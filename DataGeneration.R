@@ -41,7 +41,7 @@ state <- c(PR = 0.1,
 
 # In each iteration of the loop a set of parameters is drawn
 # from the uniform distributions specified above. The EP/PR
-# equations is then solved using these parameters. The results
+# equations are then solved using these parameters. The results
 # are saved in simulated data set.
 
 for (SampleIdx in 1:Number_of_Samples)
@@ -74,32 +74,21 @@ for (SampleIdx in 1:Number_of_Samples)
                        gamma3_ep = R_gamma3_ep)
     
     ## Solving Cole-Bendezú Model of Self-Regulation (CBMSR)
-    sol <- SolveCBMSR(parameters = ParameterList, state = state)
+    sol <- SolveCBMSR()
     
     
     ## Preparing the files required by GridWare
     
     # Updating GridWare project file to account for the newly
     # added trajectories
-    UpdateProjectFile(ProjectPath = GW_ProjectPath, 
-                      ProjectName = GW_ProjectName,
-                      TrajectoryIdx = SampleIdx,
-                      PRmax = GW_PRmax,
-                      EPmax = GW_EPmax)
+    UpdateProjectFile()
     
     # Converting the solutions of CBMSR 
     # into trajectory files readable by GridWare
-    PrepareTRJfile(ProjectPath = GW_ProjectPath, 
-                   ProjectName = GW_ProjectName,
-                   TrajectoryIdx = SampleIdx,
-                   PR_binningThrlds = GW_PR_binningThrlds,
-                   EP_binningThrlds = GW_EP_binningThrlds,
-                   PRmax = GW_PRmax,
-                   EPmax = GW_EPmax)
+    PrepareTRJfile()
 
     
-    
-    ## Write data characteristics to file for future referencingS
+    ## Writing data attribute to file for future referencing
     WriteDataAttributesToFile()
 }
 

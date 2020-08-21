@@ -1,22 +1,21 @@
 # This function converts the solutions of EP/PR model 
 # into trajectory files readable by GridWare
 
-PrepareTRJfile <- function(ProjectPath, ProjectName, TrajectoryIdx,
-                           PR_binningThrlds, EP_binningThrlds,
-                           PRmax, EPmax)
+PrepareTRJfile <- function()
 {
     # Set the default bin number to maximum number of bins
-    PRbinNumber = PRmax
-    EPbinNumber = EPmax
+    PRbinNumber = GW_PRmax
+    EPbinNumber = GW_EPmax
     
     # Generate trajectory file path
-    TrajectoryDir = file.path(ProjectPath, ProjectName, ProjectName, 
+    TrajectoryDir = file.path(GW_ProjectPath, GW_ProjectName, GW_ProjectName, 
                               fsep = "/")
     TrajectoryDir = file.path(TrajectoryDir, "trjs", fsep = "_")
     
     ## Create project directory (if it does not exist)
     dir.create(file.path(TrajectoryDir), showWarnings = FALSE)
     
+    TrajectoryIdx = SampleIdx
     TrajectoryFile = file.path("C", TrajectoryIdx, fsep = "")
     TrajectoryFile = file.path(TrajectoryFile, "trj", fsep = ".")
     TrajectoryFile = file.path(TrajectoryDir, TrajectoryFile, fsep = "/")
@@ -32,9 +31,9 @@ PrepareTRJfile <- function(ProjectPath, ProjectName, TrajectoryIdx,
         EP = sol[DataIdx,c("EP")]
         
         # Assigning new categories to PR and EP
-        PRbinNumber = .bincode(x = PR, breaks = PR_binningThrlds, 
+        PRbinNumber = .bincode(x = PR, breaks = GW_PR_binningThrlds, 
                                right = FALSE, include.lowest = TRUE)
-        EPbinNumber = .bincode(x = EP, breaks = EP_binningThrlds, 
+        EPbinNumber = .bincode(x = EP, breaks = GW_EP_binningThrlds, 
                                right = FALSE, include.lowest = TRUE)
 
         # Writing the new categories as state variables to 

@@ -1,13 +1,12 @@
 # This function solve Cole-Bendezú Model of Self-Regulation (CBMSR)
 
-SolveCBMSR <- function(parameters, state, 
-                       timeLimit = 100, 
+SolveCBMSR <- function(timeLimit = 100, 
                        NumSamples = 10000)
 {
     library(deSolve)
     
     
-    EP_PR_model <- function(t, state, parameters){
+    CBMSR <- function(t, state, parameters){
         with(as.list(c(state, parameters)),{
             
             dPR <- X1
@@ -27,8 +26,8 @@ SolveCBMSR <- function(parameters, state,
     
     times <- seq(0, timeLimit, length.out = NumSamples)
     
-    sol <- ode(func = EP_PR_model, y = state, 
-                times = times, parms = parameters)
+    sol <- ode(func = CBMSR, y = state, 
+                times = times, parms = ParameterList)
     
     library(ramify)
     sol[,c("PR")] = clip(x = sol[,c("PR")], .min = 0, .max = 18)

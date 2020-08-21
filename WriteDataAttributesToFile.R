@@ -36,8 +36,7 @@ WriteDataAttributesToFile <- function()
         write(x = LabelLine, file = DataAttrFile, append = FALSE)
         close(printer)
     }
-    
-    printer = file(DataAttrFile,"a")
+
     AttributeList <- c(ParameterList, state, 
                        GW_EP_binningThrlds,
                        GW_PR_binningThrlds)

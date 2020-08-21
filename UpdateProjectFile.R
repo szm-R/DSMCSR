@@ -1,13 +1,15 @@
 
-UpdateProjectFile <- function(ProjectPath, ProjectName, TrajectoryIdx,
-                              PRmax, EPmax)
+UpdateProjectFile <- function()
 {
+    TrajectoryIdx = SampleIdx
+    
     ## Create project directory (if it does not exist)
-    dir.create(file.path(ProjectPath, ProjectName), 
+    dir.create(file.path(GW_ProjectPath, GW_ProjectName), 
                 showWarnings = FALSE)
     
     ## Initializing the file
-    FilePath = file.path(ProjectPath, ProjectName, ProjectName, fsep = "/")
+    FilePath = file.path(GW_ProjectPath, GW_ProjectName, 
+                         GW_ProjectName, fsep = "/")
     ProjectFile = file.path(FilePath, "gwf", fsep = ".")
     printer = file(ProjectFile,"w")
     
@@ -33,30 +35,30 @@ UpdateProjectFile <- function(ProjectPath, ProjectName, TrajectoryIdx,
     ## Writing state variable lines
     
     # Prepotent responses
-    PRstateVector <- vector(mode="character", length=PRmax+3)
+    PRstateVector <- vector(mode="character", length=GW_PRmax+3)
     PRstateVector[1] = "state	integer	prepotent responses"
     PRstateVector[2] = "1"
-    PRstateVector[3] = PRmax
-    for (Idx in 1:PRmax)
+    PRstateVector[3] = GW_PRmax
+    for (Idx in 1:GW_PRmax)
     {
         PRstateVector[Idx+3] = Idx
     }
     write(x = PRstateVector, 
           file = ProjectFile, append = TRUE, 
-          ncolumns = PRmax + 6, "\t");
+          ncolumns = GW_PRmax + 6, "\t");
     
     # Executive processes
-    EPstateVector <- vector(mode="character", length=EPmax+3)
+    EPstateVector <- vector(mode="character", length=GW_EPmax+3)
     EPstateVector[1] = "state	integer	executive processes"
     EPstateVector[2] = "1"
-    EPstateVector[3] = EPmax
-    for (Idx in 1:EPmax)
+    EPstateVector[3] = GW_EPmax
+    for (Idx in 1:GW_EPmax)
     {
         EPstateVector[Idx+3] = Idx
     }
     write(x = EPstateVector, 
           file = ProjectFile, append = TRUE, 
-          ncolumns = EPmax + 6, sep = "\t");
+          ncolumns = GW_EPmax + 6, sep = "\t");
     
     ## Preferences
     write(x = "MinReturns	2", 
