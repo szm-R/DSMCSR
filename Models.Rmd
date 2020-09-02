@@ -1,0 +1,109 @@
+---
+#### بسم الله الرحمن الرحیم
+title: "Models"
+author: "Seyyedeh Zeinab Mousavi"
+date: "8/22/2020"
+toctitle: "Contents:"
+output: 
+    html_document:  
+      toc: true
+      theme: united
+---
+
+<br />
+Here I intend to list and discuss the models that we can consider for our article. The thing is that as far as I have searched, the only dynamic model explicitly proposed for self-regulation (at least in children) is that of Cole-Bendezú's. The others are just equations that *could* be considered for such a purpose. 
+
+<br />
+
+## Cole-Bendezú model
+
+The defining equations:
+$$
+\begin{split}
+		\frac {d^2PR(t)}{dt^2}  =&\ \eta_{PR} (PR(t)-b_{PR}) + \gamma_{1,PR}(EP(t)-b_{EP}) \\
+		&+\gamma_{2,PR}\left ( (PR(t)-b_{PR})\times(EP(t)-b_{EP}) \right ) \\
+		&+\gamma_{3,PR}\left ( (EP(t)-b_{EP})\times \frac {dPR(t)}{dt} \right ) \\
+		\frac {d^2EP(t)}{dt^2}  =&\ \eta_{EP} (EP(t)-b_{EP}) + \gamma_{1,EP}(PR(t)-b_{PR}) \\
+		&+\gamma_{2,EP}\left ( (PR(t)-b_{PR})\times(EP(t)-b_{EP}) \right ) \\
+		&+\gamma_{3,EP}\left ( (PR(t)-b_{PR})\times \frac {dEP(t)}{dt} \right )\\
+\end{split}
+$$
+<br />
+
+## Lotka–Volterra equations
+
+Definition from Wikipedia:
+
+> The Lotka–Volterra equations, also known as the predator–prey equations, are a pair of first-order nonlinear differential equations, frequently used to describe the dynamics of biological systems in which two species interact, one as a predator and the other as prey. The populations change through time according to the pair of equations: 
+
+$$
+\begin{split}
+\frac{dx}{dt} =&\  \alpha x - \beta xy \\
+\frac{dy}{dt} =&\  \delta y - \gamma xy
+\end{split}
+$$
+
+It's practically like CB model but without the second and fourth terms, which would probably result in a less flexible and dynamic response (i. e. fewer parameters to set).
+<br />
+
+## Ornstein–Uhlenbeck process
+
+This is even simpler than LV model:
+
+$$
+\frac {dx_t}{dt} = -\theta x_t + \sigma \eta (t)
+$$
+<br />
+
+## Latent Difierential Structural Equation Models (Boker, 2001)
+
+<br />
+
+## Coupled Latent Difference Score Models of Change (McArdle & Hamagami, 2001)
+
+$$\Delta x_{nt} = \alpha_x S_{xn} + \beta_x (x_{n(t-1)}) + \gamma_x(y_{n(t-1)})$$
+
+$$\Delta y_{nt} = \alpha_y S_{yn} + \beta_y (y_{n(t-1)}) + \gamma_y(x_{n(t-1)})$$
+For simulating data from these equations, we could start from random initial states and then continue onward. 
+<br />
+
+## Coupled Latent Differential Equations
+
+$$
+\frac{d^2 x}{dt^2} = \eta_x (x)_t + \zeta_x \left ( \frac{dx}{dt} \right )_t + \left [ \eta_{yx}(y)_t + \zeta_{yx}\left (\frac{dy}{dt} \right )_t \right ] + e_{xt}
+$$
+$$
+\frac{d^2 y}{dt^2} = \eta_y (y)_t + \zeta_y \left(\frac{dy}{dt} \right)_t + \left[\eta_{xy}(x)_t + \zeta_{xy}\left(\frac{dx}{dt} \right)_t \right] + e_{yt}
+$$
+
+This is like CB model except that the second derivative is also a function of the other variable's rate of change. 
+<br />
+
+## General discussion
+
+What are the things we can test in these models using data simulation? Could be:
+
+- **The internal consistency of models**: Does the model actually exhibit the behavior it is claiming to model? For example, by checking the effect of a special parameter on the behavior of the data.  
+Problem here is that it seems more like an educational aim, because the properties of these models have been studied in general before (for physical or biological systems which are the original systems these models have been used to describe).
+
+- **Comparing the models**: What is it exactly that we are going to compare? The original thought was to analyze the simulated data using SSG and then compare the results obtained from these analyses, but what is that going to accomplish?! Problem is I *don't* know the kind of results that we *should* get from SSG to then judge each method based on this criteria.  
+However, one way to acquire such knowledge is to perform some exploratory data analysis. In other words, we try to extract the possible correlation between say model parameters and SSG results. 
+
+- Probably simulate some child behavior outside these models?
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
