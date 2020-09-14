@@ -1,0 +1,95 @@
+---
+#### بسم الله الرحمن الرحیم
+title: "Research Process"
+author: "Seyyedeh Zeinab Mousavi"
+toctitle: "Contents:"
+output: 
+    html_document:  
+      toc: true
+      theme: united
+bibliography: ../../My Manuscripts/Mendeley/SR-DS_sim.bib
+csl: apa.csl
+---
+
+<br />
+Created on September 6, 2020  
+Last modified on `r format(Sys.time(), '%B %d, %Y')`
+
+# Topic
+
+**Requirements**: 
+
+- The research needs to be wrapped up in at most 1 month. So, it needs to be reasonably planned out.
+
+**General topic**: Modeling dyadic processes using coupled differential equations
+
+**Suggested title**: Using Coupled Differential Equations to Model Dyadic Behavior: A Simulation-based Comprehensive Guide 
+
+**Type of research**: Simulation-based data processing
+
+**Relevance**: 
+
+- Helping to design more efficient and relevant real-world experiments: We use models to make phenomena more explainable. Knowing characteristics of each model and its implications in the specific behavior we are trying to understand can help us in conducting better real-world experiments. 
+<br/>
+
+# Problem Statement
+
+Differential equations have long been used in explaining physical and chemical phenomena. Recently, there have been researches trying to describe and analyze psychological and cognitive phenomena using the same techniques. I have come across some guides for using these equations in such researches, specifically [@Ram2008a] and [@Boker2004]. However, these articles do not provide a detailed, comprehensive guide as to how should the researcher interpret the meaning of each coefficient in his or her specific behavior. For example in [@Cole2017a], the authors model self-regulation (SR) dynamics in children using the following coupled oscillation equations (CB model):
+
+$$
+\small 
+\begin{split}
+		\frac {d^2PR(t)}{dt^2}  =&\ \eta_{PR} (PR(t)-b_{PR}) + \gamma_{1,PR}(EP(t)-b_{EP}) \\
+		&+\gamma_{2,PR}\left ( (PR(t)-b_{PR})\times(EP(t)-b_{EP}) \right ) \\
+		&+\gamma_{3,PR}\left ( (EP(t)-b_{EP})\times \frac {dPR(t)}{dt} \right ) \\
+		\frac {d^2EP(t)}{dt^2}  =&\ \eta_{EP} (EP(t)-b_{EP}) + \gamma_{1,EP}(PR(t)-b_{PR}) \\
+		&+\gamma_{2,EP}\left ( (PR(t)-b_{PR})\times(EP(t)-b_{EP}) \right ) \\
+		&+\gamma_{3,EP}\left ( (PR(t)-b_{PR})\times \frac {dEP(t)}{dt} \right )\\
+\end{split}
+$$
+<br />
+In the paper the authors discuss the implications of each of the parameters. However, they don't explain the process by which the came to conclusions like, $\gamma_{2,PR}$ and $\gamma_{2,EP}$ *capture how the intrinsic dynamics of PR and EP are moderated by the location of the other process*, or that $\gamma_{3,PR}$ shows *regulatory efficiency/inefficiency* and that $\gamma_{3,EP}$ indicates *regulatory interference*.
+
+Therefore, to incorporate these kinds of differential equations in their studies, common psychological researchers, which are normally lacking in mathematical knowledge, need to understand the meaning and implications of each parameter in these equations. We aim to provide such understanding via elaborate simulations. 
+<br/>
+
+# Procedure
+
+One way to gain understanding about different parameters effect in a model such as the one proposed by @Cole2017a is to keep all of the parameters constant and then vary one to examine its effect (can we attribute the results to the change in that particular parameter? as the whole thing we are examining is an interacting system). This examination is then carried out by solving the resulting differential equation.
+
+We need to find a way for comparing the resulting solution. For example, what would result from adding another term to the model, making it more complex?
+
+We want the reader to understand the meaning of each parameter and how it affects the behavior of variables. Also, we aim to write the code so that each researcher would be able to examine their proposed model by tweaking parameters and then watching how the variable behave. 
+<br/>
+
+# Literature
+
+@Boker2004 introduces Differential Structural Equation Modeling or dSEM in his article, focusing on models that incorporate *change* as either predictor or outcome. The author first reviews the meaning of first and second derivatives in differential equations. A distinction of a dynamical model with a growth curve model according to the author:
+
+> A dynamical model produces a prediction about the attractor which best fits the data. This is the basic difference between a dynamical model and a growth curve model which produces a prediction about a best fitting growth curve (what a dynamical modeler would call a single best fitting trajectory).
+
+As far as I can tell dSEMs are essentially SEMs with derivatives serving as components, along with the variables' magnitude. The researcher constructs several such models and then fits them to the data to find the best one. I don't know the actual methods of fitting SEMs and therefore, can't judge if it actually differs from fitting an ODE or not. I also tried to model CB model's differential equations using dSEM but failed. I don't know how to model terms such as $\small \gamma_{2,PR}\left ( (PR(t)-b_{PR})\times(EP(t)-b_{EP}) \right )$ (specifically the multiplication of the variables).
+
+Overall, @Boker2004 provides no explanation of the different parameters of a differential equation other that explaining derivatives in simple terms. 
+
+@Ram2008a discuss ecological models (two species competing over shared resources) and how to apply them to studying dyadic interactions (e. g. mother-child or wife-husband). The same models could also be applied to other kinds of interacting pairs such as EP/PR. 
+
+@Davis2007 explain how to develop theories using simulation methods. The authors go through the process and provide a comprehensive guide. The last step in this article is to validate the results using real experimental data and this is what we lack in the present research. 
+
+
+
+
+# References
+
+
+
+
+
+
+
+
+
+
+
+
+
